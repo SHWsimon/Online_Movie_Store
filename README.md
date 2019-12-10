@@ -34,7 +34,7 @@ Name for the Website
 
 • Database Design 
 >MongoDB Schema
-![image](https://github.com/SHWsimon/CS6314-001_Web-Programming-Language/blob/master/pic/Screen%20Shot%202019-12-09%20at%2011.22.48%20AM.png)
+![image](https://github.com/SHWsimon/Online_Movie_Store/blob/master/pic/Screen%20Shot%202019-12-09%20at%2011.22.48%20AM.png)
 
 • Languages/frameworks used for implementation
   ><ul>

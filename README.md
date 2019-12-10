@@ -37,16 +37,16 @@ Name for the Website
 ![image](https://github.com/SHWsimon/Online_Movie_Store/blob/master/pic/Screen%20Shot%202019-12-09%20at%2011.22.48%20AM.png)
 
 • Languages/frameworks used for implementation
-  ><ul>
-  ><li>Client-side</li>
-  >  <p>JavaScript/CSS/HTML/EJS</p>
-  ><li>Server-side</li>
-  >  <p>Node.js</p>
-  ><li>Database</li>
-  >  <p>MongoDB</p>
-  ><li>IDE</li>
-  >  <p>Cloud9</p>
-  ></ul>
+  <ul>
+  <li>Client-side</li>
+    <p>JavaScript/CSS/HTML/EJS</p>
+  <li>Server-side</li>
+    <p>Node.js</p>
+  <li>Database</li>
+    <p>MongoDB</p>
+  <li>IDE</li>
+    <p>Cloud9</p>
+  </ul>
 
 • Screenshots for main functionalities 
 

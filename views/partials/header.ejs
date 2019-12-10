@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MovieFox</title>
+        <!--Implement bootstrap-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="/stylesheets/main.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+        <a class="navbar-brand" href="/">MovieFox<i class="fab fa-firefox ml-2"></i></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item <%= typeof page !== 'undefined' && page === 'movies' ? 'active' : '' %>">
+                    <a href="/movies/page/1" class="nav-link">Home</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Movies
+                    </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/movies/category/Drama/page/1">Drama</a>
+                        <a class="dropdown-item" href="/movies/category/Action/page/1">Action</a>
+                        <a class="dropdown-item" href="/movies/category/Animation/page/1">Animation</a>
+                        <a class="dropdown-item" href="/movies/category/Comedy/page/1">Comedy</a>
+                </li>
+            </ul>
+        
+            <ul class="navbar-nav">
+                <% if(!currentUser){ %>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Guess Mode
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/login">Login</a>
+                            <a class="dropdown-item" href="/register">Sign Up</a>
+                        </div>
+                    </div>
+                <% } else { %>
+                    <li class="nav-item">
+                        <!-- Button trigger modal -->
+                        <!--<a><i class="fas fa-cart-arrow-down" data-toggle="modal" data-target="#exampleModal"></i></a>-->
+                        <a href="/users/<%= currentUser.id %>/checkout"><i class="fas fa-cart-arrow-down"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Signed In As <%= currentUser.username %></a>
+                    </li>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            User Mode
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/users/<%= currentUser.id %>">Profile</a>
+                            <a class="dropdown-item" href="/logout">Logout</a>
+                        </div>
+                    </div>
+                <% } %>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Alert -->
+    <div class= "container">
+        <% if(error && error.length>0){ %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+        <% } %>
+        <% if(success && success.length>0){ %>
+            <div class="alert alert-success" role="alert">
+                <%= success %>
+            </div>
+        <% } %>
+    </div>
+        
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+                <% if(currentUser || currentUser && currentUser.isAdmin){ %>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a href="/users/<%= currentUser.id %>/checkout" class="btn btn-info" >Check Out</a>
+                <% } %>
+          </div>
+        </div>
+      </div>
+    </div>  

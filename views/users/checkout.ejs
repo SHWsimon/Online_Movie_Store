@@ -1,0 +1,98 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="mb-4">Shoppong List
+                <span>
+                    <i class="fa fa-shopping-cart"></i> 
+                </span>
+            </h1>
+            <div class="card">
+                <div class="card-body p-0">
+                    <div class="row pb-5 p-5">
+                        <div class="col-md-6">
+                            <p class="font-weight-bold mb-4">Client Information</p>
+                            <p class="mb-1">First Name: <%= user.firstName %></p>
+                            <p class="mb-1">Last Name: <%= user.lastName %></p>
+                            <p class="mb-1">Email: <%= user.email %></p>
+                        </div>
+
+                        <div class="col-md-6 text-right">
+                            <p class="font-weight-bold mb-4">Payment Details</p>
+                            <p class="mb-1"><span class="text-muted">Payment: </span> Credit Card</p>
+                            <p class="mb-1"><span class="text-muted">Name: </span> <%= user.username %></p>
+                        </div>
+                    </div>
+
+                    <div class="row p-5">
+                        <div class="col-md-12 ">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Item</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Price</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold text-right">Remove from cart</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% movieDetail.forEach(function(movies){ %>
+                                        <% if(movies != null){ %>
+                                            <tr>
+                                                <td><%= movies.name%></td>
+                                                <td><%= movies.price%></td>
+                                                <td>
+                                                <form action="/users/<%= user._id %>/<%= movies._id%>/item-delete/?_method=DELETE" method="POST">
+                                                     <div class="form-group">
+                                                         <button class="btn btn-danger btn-sm float-right">Remove</button>
+                                                    </div>
+                                                </form>  
+                                                </td>
+                                            </tr>
+                                        <% } else{ %>  
+                                            <meta http-equiv="refresh" content="1">  
+                                        <% } %>
+                                    <% }); %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row-reverse bg-dark text-white p-4">
+                        <div class="py-3 px-5 text-right">
+                            <div class="mb-2">Grand Total</div>
+                            <div class="h2 font-weight-light">$<%= parseInt(total*(0.9)) %></div>
+                        </div>
+
+                        <div class="py-3 px-5 text-right">
+                            <div class="mb-2">Discount</div>
+                            <div class="h2 font-weight-light">10%</div>
+                        </div>
+
+                        <div class="py-3 px-5 text-right">
+                            <div class="mb-2">Sub - Total amount</div>
+                            <div class="h2 font-weight-light">$<%= total %></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="py-3 float-right">
+                <a class="btn btn-lg btn-secondary" href="/movies/page/1">Cancel</a>
+                
+                <!-- check out use post -->
+                <% if(movieDetail.length > 0 && (currentUser  || currentUser.isAdmin)){ %>
+                    <form class="float-right ml-2" action="/users/<%= user._id %>/cart/?_method=PUT" method="POST">
+                         <div class="form-group">
+                             <button class="btn btn-lg btn-info">Check Out</button>
+                        </div>
+                    </form>       
+                <% }%>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<% include ../partials/footer %>

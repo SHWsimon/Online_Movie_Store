@@ -1,0 +1,50 @@
+<% include ../partials/header %>
+<div class="container">
+    <div class="row">
+    	<div class="col-md-4">
+    		<h1><%= user.firstName + " " + user.lastName %></h1>
+    		<div class="thumbnail">
+    			<img src="<%= user.avatar %>" alt="user profile image">
+    			<div class="caption"><a href="mailto:<%= user.email %>"><%= user.email %></a></div>
+    		</div>
+    		<div>
+    		    <%= user.intro %>
+    		</div>
+    		<div class="float-left mt-4 mb-4">
+    		    <!--user._id.equals(req.user.id)-->
+    		    <% if(currentUser && user._id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
+                    <a href="/users/<%= currentUser.id %>/edit" class="btn btn-sm btn-secondary">Edit profile</a>
+                <% } %>
+                <a href="/users/<%= currentUser.id %>/checkout" class="btn btn-sm btn-info">Checkout</a>
+    	    </div>
+    	</div>
+    	<div class="col-md-8">
+    	     <h3>Shopping History:</h3>
+    		<table class ="table">
+    		    <thead>
+    		        <tr>
+        		        <th scope="col">History Id</th>
+        		        <th scope="col">Movie List</th>
+        		        <th scope="col">Total Price</th>
+        		     </tr>
+    		    </thead>
+    		    <tbody>
+    		        <% var index = 0 %>
+                	    <% movieDetail.forEach(function(movieHistorys){ %>
+                		    <tr>
+                    		    <th scope="row"><%= index %></td>
+                    		    <td>
+                    		    <% for(var i=0; i<movieHistorys.length; i++) { %>
+                    			    <a><%= movieHistorys[i].name %></a><br>
+                    			<% }; %>
+                    			</td>
+                    			<td><a><%= parseInt(total[index] *0.9) %></a></td>
+                    			<% index+=1 %>
+                			</tr>
+                        <% }); %>
+    		    </tbody>
+    		</table>
+    	</div>
+    </div>
+</div>
+<% include ../partials/footer %>

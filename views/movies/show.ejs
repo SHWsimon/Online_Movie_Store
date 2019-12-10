@@ -1,0 +1,90 @@
+<% include ../partials/header %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <img class="card-img-top" src="<%= movie.image %>" alt="<%= movie.name %>" >
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <p class="float-right">
+                        $<%= movie.price %> USD
+                    </p>
+                    <h5 class="card-title"><%= movie.name %></h5>
+                    <p>
+                        <em>
+                            Category: <a href="/movies/category/<%= movie.category %>/page/1"><%= movie.category%></a>
+                        </em>
+                        <em>
+                          , Submitted by: <a href="/users/<%= movie.author.id %>"><%= movie.author.username %></a>
+                          , <%= moment(movie.createdAt).fromNow() %>
+                        </em>
+                    </p>
+                    <hr>
+                    <h5>Description</h5>
+                    <p class="card-text"><%= movie.description %></p>
+                    <hr>
+                    <h5>Movie Trail From <a href="https://www.imdb.com/?ref_=nv_home">IMDB</a></h5>
+                    <iframe src="<%= movie.movieTrail %>" allowfullscreen width="500" height="300"></iframe>
+                    <!-- currentUser is a global variable -->
+                    <% if(currentUser && movie.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
+                        <a class="btn btn-sm btn-warning" href="/movies/<%= movie._id %>/edit">Edit</a>
+                        <form id="delete-form" action="/movies/<%= movie._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-sm btn-danger">DELETE</button>   
+                        </form>
+                    <% } %>
+                </div>
+            </div>
+            <% if(currentUser){ %>
+                <form action="/movies/<%= movie._id %>/cart/?_method=PUT" method="POST">
+                     <div class="form-group">
+                         <button class="btn btn-primary btn-lg btn-block">Add to cart</button>
+                    </div>
+                </form>       
+            <% }%>
+        </div>
+        <div class="col-md-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="text-right">
+                        <a class="btn btn-success" href="/movies/<%= movie._id %>/comments/new">Add New Comment</a>    
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <% movie.comments.forEach(function(comment){ %>
+                            <div class="col-md-12 mb-2">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="float-left">
+                                            <p class="card-title"><%= comment.author.username %></p>
+                                            <p class="card-text"><%= comment.text %></p>
+                                        </div>
+                                        <div class="float-right">
+                                            <p><%= moment(comment.createdAt).fromNow() %></p>
+    
+                                            <% if(currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
+                                                <div class="float-right">
+                                                    <a class="btn btn-sm btn-warning" 
+                                                    href="/movies/<%= movie._id %>/comments/<%= comment._id%>/edit">
+                                                        Edit
+                                                    </a>
+                                                    <form id="delete-form" action="/movies/<%= movie._id %>/comments/<%= comment._id%>?_method=DELETE" method="POST">
+                                                        <input type="submit" class="btn btn-sm btn-danger" value="Delete">
+                                                    </form>
+                                                </div>
+                                            <% } %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% });%>
+                    </div>                      
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>

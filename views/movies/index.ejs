@@ -1,0 +1,53 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-7">
+        
+        <h1>Welcome to MovieFox!</h1>
+        <p>View out pop movies from all over the world</p>
+        </div>
+        <div class="col-md-5">
+            <form action="/movies/page/1" method="GET" class="form-inline float-right mb-2">
+                <div class="form-group">
+                    <input type="text" name="search" placeholder="Movies search..." class="form-control">
+                    <input type="submit" value="Search" class="btn btn-primary">
+                </div>
+            </form>
+            <% if(currentUser && currentUser.isAdmin){ %>
+            <a class="btn btn-primary btn-lg float-right" href="/movies/new">Add new movies</a>
+            <% } %>
+        </div>
+    </div>
+    <hr>
+    <div class="row text-center" id="movie-grid">
+        <!--<div class="carousel-inner row w-100 mx-auto">-->
+        <% movies.forEach(function(movie){ %>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4 active">
+                <div class="card">
+                    <a href="/movies/<%= movie._id %>">
+                        <img class="card-img-top" src="<%= movie.image %>" alt="<%= movie.name %>" width="600" height="400" />
+                    </a>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+    <nav class="align-center mt-2" aria-label="...">
+        <ul class="pagination pagination-lg justify-content-center">
+            <% for(var i=0; i<page.length; i+=8){ %>
+                <!-- category -->
+                <% if(noMatch) {%>
+                    <li class="page-item"><a class="page-link" href="/movies/page/<%= i/8+1 %>?search=<%= flag %>"><%= i/8+1 %></a></li>
+                    <% }else{ %>
+                        <% if(flag) {%>
+                            <li class="page-item"><a class="page-link" href="/movies/category/<%= flag %>/page/<%= i/8+1 %>"><%= i/8+1 %></a></li>
+                        <% } else {%>
+                        <!-- all -->
+                            <li class="page-item"><a class="page-link" href="/movies/page/<%= i/8+1 %>"><%= i/8+1 %></a></li>
+                        <% } %>
+                    <% } %>
+            <% } %>
+        </ul>
+    </nav>
+</div>
+<% include ../partials/footer %>    

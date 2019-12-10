@@ -51,21 +51,21 @@ Name for the Website
 • Screenshots for main functionalities 
 
   >• Homepage
-  ![image](https://github.com/SHWsimon/CS6314-001_Web-Programming-Language/blob/master/pic/Screen%20Shot%202019-12-09%20at%205.14.15%20PM.png)
+  ![image](https://github.com/SHWsimon/Online_Movie_Store/blob/master/pic/Screen%20Shot%202019-12-09%20at%205.14.15%20PM.png)
   
   >• Log in and sign up
-  ![image](https://github.com/SHWsimon/CS6314-001_Web-Programming-Language/blob/master/pic/Screen%20Shot%202019-12-09%20at%205.14.35%20PM.png)
+  ![image](https://github.com/SHWsimon/Online_Movie_Store/blob/master/pic/Screen%20Shot%202019-12-09%20at%205.14.35%20PM.png)
   
   >• Movie details
-  ![image](https://github.com/SHWsimon/CS6314-001_Web-Programming-Language/blob/master/pic/Screen%20Shot%202019-12-09%20at%205.14.57%20PM.png)
+  ![image](https://github.com/SHWsimon/Online_Movie_Store/blob/master/pic/Screen%20Shot%202019-12-09%20at%205.14.57%20PM.png)
   
   >• Shopping cart
-  ![image](https://github.com/SHWsimon/CS6314-001_Web-Programming-Language/blob/master/pic/Screen%20Shot%202019-12-09%20at%205.15.13%20PM.png) 
+  ![image](https://github.com/SHWsimon/Online_Movie_Store/blob/master/pic/Screen%20Shot%202019-12-09%20at%205.15.13%20PM.png) 
   
   >• Profile page (include shop history)
-  ![image](https://github.com/SHWsimon/CS6314-001_Web-Programming-Language/blob/master/pic/Screen%20Shot%202019-12-09%20at%205.15.27%20PM.png)
+  ![image](https://github.com/SHWsimon/Online_Movie_Store/blob/master/pic/Screen%20Shot%202019-12-09%20at%205.15.27%20PM.png)
   
   >• Add new movie
-  ![image](https://github.com/SHWsimon/CS6314-001_Web-Programming-Language/blob/master/pic/Screen%20Shot%202019-12-09%20at%205.15.40%20PM.png)
+  ![image](https://github.com/SHWsimon/Online_Movie_Store/blob/master/pic/Screen%20Shot%202019-12-09%20at%205.15.40%20PM.png)
   
  
